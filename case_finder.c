@@ -29,7 +29,7 @@ int case_finder(const char ch, int count, va_list args)
 				str = "(null)";
 			while (*str != '\0')
 			{
-				write(1, &str[j], 1);
+				write(1, &str, 1);
 				str++;
 				count++;
 			}
