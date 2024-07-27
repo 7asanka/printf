@@ -8,9 +8,9 @@
  * @arg: argument list
  * @count: count to increase for function printf
  *
- * Return: nothing
+ * Return: count
  */
-void case_finder(const char ch, int count, va_list args)
+int case_finder(const char ch, int count, va_list args)
 {
 	switch (ch)
 	{
@@ -53,4 +53,6 @@ void case_finder(const char ch, int count, va_list args)
 			break;
 		}
 	}
+
+	return (count);
 }

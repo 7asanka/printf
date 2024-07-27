@@ -3,6 +3,6 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...);
-void case_finder(const char ch, int count, va_list args);
+int case_finder(const char ch, int count, va_list args);
 
 #endif
