@@ -11,43 +11,40 @@
  */
 int case_finder(const char ch, int count, va_list args)
 {
-	switch (ch)
+	if (ch == 'c')
 	{
-		case 'c':
-		{
-			char c = va_arg(args, int);
+		char c = va_arg(args, int);
 
-			write(1, &c, 1);
-			count++;
-			break;
-		}
-		case 's':
-		{
-			char *str = va_arg(args, char*);
+		write(1, &c, 1);
+		count++;
+	} else if (ch == 's')
+	{
+		char *str = va_arg(args, char*);
 
-			if (str == NULL)
-				str = "(null)";
-			while (*str)
-			{
-				write(1, str, 1);
-				count++;
-				str++;
-			}
-			break;
-		}
-		case '%':
+		if (str == NULL)
+			str = "(null)";
+		while (*str)
 		{
-			write(1, "%", 1);
+			write(1, str, 1);
 			count++;
-			break;
+			str++;
 		}
-		default:
-		{
-			write(1, "%", 1);
-			write(1, &ch, 1);
-			count += 2;
-			break;
-		}
+	} else if (ch == '%')
+	{
+		write(1, "%", 1);
+		count++;
+	} else if (ch == 'i' || ch == 'd')
+	{
+		int num = va_arg(args, int);
+		char cnum = (char)num;
+
+		write(1, &cnum, 1);
+		count++;
+	} else
+	{
+		write(1, "%", 1);
+		write(1, &ch, 1);
+		count += 2;
 	}
 	return (count);
 }
