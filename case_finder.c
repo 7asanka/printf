@@ -38,7 +38,7 @@ int case_finder(const char ch, int count, va_list args)
 	{
 		int num = va_arg(args, int);
 		char buf[12];
-		int len = snprintf(buf, 12, "%d", num);
+		int len = snprintf(buf, sizeof(buf), "%d", num);
 
 		write(1, buf, len);
 		count += len;
