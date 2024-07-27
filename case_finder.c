@@ -24,15 +24,14 @@ int case_finder(const char ch, int count, va_list args)
 		case 's':
 		{
 			char *str = va_arg(args, char*);
-			int j = 0;
 
 			if (str == NULL)
 				str = "(null)";
-			while (str[j] != '\0')
+			while (*str != '\0')
 			{
 				write(1, &str[j], 1);
+				str++;
 				count++;
-				j++;
 			}
 			break;
 		}
@@ -43,12 +42,14 @@ int case_finder(const char ch, int count, va_list args)
 			break;
 		}
 		default:
+		{
 			char c = va_arg(args, int);
 
 			write(1, "%", 1);
 			write(1, &c, 1);
 			count += 2;
 			break;
+		}
 	}
 	return (count);
 }
