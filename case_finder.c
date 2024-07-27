@@ -1,6 +1,7 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdio.h>
 /**
  * case_finder - finds mod case for _printf
  * @ch: character for the case
@@ -36,10 +37,11 @@ int case_finder(const char ch, int count, va_list args)
 	} else if (ch == 'i' || ch == 'd')
 	{
 		int num = va_arg(args, int);
-		char cnum = (char)num;
+		char buf[12];
+		int len = snprintf(buf, 12, "%d", num);
 
-		write(1, &cnum, 1);
-		count++;
+		write(1, buf, len);
+		count += len;
 	} else
 	{
 		write(1, "%", 1);
